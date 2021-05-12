@@ -3,7 +3,7 @@ import './UsersList.css';
 import { Link, Redirect } from "react-router-dom";
 import { usersContext } from "../../App";
 import MaterialTable from 'material-table';
-import {  Avatar, Button} from '@material-ui/core';
+import { Button} from '@material-ui/core';
 
 
 
@@ -26,6 +26,7 @@ const UsersList = () => {
     if(!users) {
         return null
     }
+
     return ( 
         <div className='usersList'>
             {useremail == null && <Redirect to='/login'></Redirect>}
@@ -33,11 +34,10 @@ const UsersList = () => {
             <Link className='btn-create' to="/users/create"><Button variant='contained' color='primary'>Create</Button></Link>
             </div>
             <MaterialTable data={users} columns={columns} title='User Data'
-            onRowClick={(event, rowData) => {
+            onRowClick={(rowData) => {
                 setId(rowData.id)
                 setRedirect(true)
               }}
-            
             />
             {redirect && <Redirect push to={`users/${id}`}/>}
         </div>

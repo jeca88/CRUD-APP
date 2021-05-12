@@ -39,6 +39,7 @@ function App() {
           <UsersProvider value={{users, setUsers}}>
             <Header setTheme={darkMode, setDarkMode}/>
             <Switch>
+                  <Route exact path="/"  component={UsersList} />
                   <Route exact path="/users"  component={UsersList} />  
                   <Route exact path="/login" component={Login} />
                   <Route exact path="/users/create" component={CreateUser} />

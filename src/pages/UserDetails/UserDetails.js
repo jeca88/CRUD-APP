@@ -9,6 +9,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 
+
+
 const UserDetails = (props) => {
     const {users, setUsers} = useContext(usersContext);
     const [redirect, setRedirect] = useState(false)
@@ -20,14 +22,12 @@ const UserDetails = (props) => {
     const findUser = (users) => {
         if(users) {
             return users.find(e => e.id == props.match.params.id);
-        }
-       
+        }   
     }
+
     const user =  findUser(users);
 
     const deleteUser = () => {
-        console.log(user.id)
-       
         fetch(`https://609b8ed42b549f00176e3c6a.mockapi.io/users/${user.id}`, {
             method: "DELETE",
             headers: {
@@ -37,9 +37,7 @@ const UserDetails = (props) => {
         .then(res => res.json())
         .then(()=>{
           setRedirect(true)
-          setUsers(null)
-          
-         
+          setUsers(null)  
         })
         .catch((error) => alert('Oops! Something went wrong... :( Please try again.'))
     }
@@ -49,6 +47,7 @@ const UserDetails = (props) => {
          return null;
      }
 
+     
     return ( 
     <div>
       <div className="back-cnt">

@@ -5,6 +5,8 @@ import { Grid, Paper, Avatar, TextField, Button} from '@material-ui/core';
 import CreateRoundedIcon from '@material-ui/icons/CreateRounded';
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 
+
+
 const CreateUser = () => {
     const {setUsers} = useContext(usersContext);
     const [name, setName] = useState("")
@@ -15,7 +17,7 @@ const CreateUser = () => {
     const avatarStyle = { backgroundColor: 'blue'};
     const btnStyle = {margin: '40px 0'};
 
-    const submitForm = () => {
+    const submitCreateForm = () => {
         const url = "https://609b8ed42b549f00176e3c6a.mockapi.io/users";
         fetch(url, {
             method: 'POST',
@@ -26,18 +28,24 @@ const CreateUser = () => {
                 name: name,
                 email: email,
             })
-
         }).then((res) => res.json())
         .then(() => {
             setRedirect(true); 
             setUsers(null);  
-        })
-        .catch((error) => alert('Oops! Something went wrong... :( Please try again.'))
-        
-        
+        })   
     }
 
 
+    const onSubmit = async (event) => {
+        event.preventDefault(); 
+        try {
+          await submitCreateForm();
+          alert('You successfully created new user!');
+         
+        } catch (e) {
+          alert('Something went wrong! Try again.' );
+        }
+      }
 
 
 
@@ -52,26 +60,28 @@ const CreateUser = () => {
                     <Avatar style={avatarStyle}><CreateRoundedIcon/></Avatar>
                     <h2>Create new User</h2>
                 </Grid>
-                <TextField label='Name' placeholder='Enter name' 
-                fullWidth required value={name} 
-                onChange={(e) => setName(e.target.value)}
-                error={name.length<4}
-                helperText={name.length < 5 ? "Name must be longer than four characters!" : " "}
-                /> 
-                 <TextField label='Username' placeholder='Enter username' 
-                fullWidth required value={email} 
-                onChange={(e) => setEmail(e.target.value)}
-                />  
-                <Button type='submit' variant='contained' color='primary' 
-                fullWidth style={btnStyle} onClick={submitForm}>
-                    Submit
-                </Button>   
+                <form onSubmit={onSubmit}>
+                    <TextField label='Name' placeholder='Enter name' 
+                    fullWidth required value={name} type='text' 
+                    inputProps={{
+                        minLength: 4,
+                      }}
+                    onChange={(e) => setName(e.target.value)}/> 
+                    <TextField label='Username' placeholder='Enter username' 
+                    fullWidth required value={email} type='email'
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    onChange={(e) => setEmail(e.target.value)}
+                    />  
+                    <Button type='submit' variant='contained' color='primary' 
+                    fullWidth style={btnStyle}>
+                        Submit
+                    </Button> 
+                </form>  
             </Paper>
             {redirect && <Redirect to="/users"/>}
-        </Grid>
-        </div>
-        
-     );
+            </Grid>
+        </div>    
+    );
 }
  
 export default CreateUser;

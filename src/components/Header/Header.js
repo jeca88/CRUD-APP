@@ -6,12 +6,12 @@ import SupervisedUserCircleRoundedIcon from '@material-ui/icons/SupervisedUserCi
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import ColorLensRoundedIcon from '@material-ui/icons/ColorLensRounded';
 
+
+
 const Header = ({ setTheme }) => {
     const [redirect, setRedirect] = useState(false);
-
     let location = useLocation();
     
-
     const logOut = () => {
         localStorage.removeItem('userEmail');
         setRedirect(true);
@@ -19,7 +19,6 @@ const Header = ({ setTheme }) => {
     
 
     return ( 
-        
         <AppBar position="static">
              {redirect && <Redirect to='/login'></Redirect>}
             <Toolbar className='header'>
@@ -30,11 +29,8 @@ const Header = ({ setTheme }) => {
             </Button>
             {location.pathname.includes('/login') ? 
             null : <Button onClick={logOut}><ExitToAppRoundedIcon/>Logout</Button>}
-            </Toolbar>
-           
-        </AppBar>
-       
-       
+            </Toolbar>    
+        </AppBar>   
      );
 }
  

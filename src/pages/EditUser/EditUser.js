@@ -6,6 +6,7 @@ import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 
 
+
 const EditUser = (props) => {
     const {setUsers} = useContext(usersContext);
     const [name, setName] = useState("")
@@ -17,11 +18,7 @@ const EditUser = (props) => {
     const avatarStyle = { backgroundColor: 'blue'};
     const btnStyle = {margin: '40px 0'};
 
-    // const handleFormSubmit = () => {
-    //     if(name !== '' && ) {
-    //         true
-    //     }
-    // }
+    
 
     const editUserForm = () => {
         const url = "https://609b8ed42b549f00176e3c6a.mockapi.io/users/";
@@ -34,15 +31,24 @@ const EditUser = (props) => {
                 name: name,
                 email: email,
             })
-
         }).then((res) => res.json())
         .then(() => {
             setUsers(null);
-            setRedirect(!redirect)
-            
-        })
-        .catch((error) => alert('Oops! Something went wrong... :( Please try again.'))       
+            setRedirect(!redirect)    
+        })       
     }
+
+
+    const onSubmit = async (event) => {
+        event.preventDefault(); 
+        try {
+          await editUserForm();
+          alert('You successfully edited user!');
+         
+        } catch (e) {
+          alert('Something went wrong! Try again.' );
+        }
+      }
 
 
     return ( 
@@ -56,18 +62,21 @@ const EditUser = (props) => {
                     <Avatar style={avatarStyle}><EditRoundedIcon/></Avatar>
                     <h2>Edit User</h2>
                 </Grid>
-                <form>
+                <form onSubmit={onSubmit}>
                     <TextField label='Name' placeholder='Enter name' 
-                    fullWidth required value={name} 
+                    fullWidth required value={name} type='text'
+                    inputProps={{
+                        minLength: 4,
+                      }}
                     onChange={(e) => setName(e.target.value)}
                     /> 
                     <TextField label='Username' placeholder='Enter username' 
-                    fullWidth required value={email} 
+                    fullWidth required value={email} type='email'
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                     onChange={(e) => setEmail(e.target.value)}
                     />  
                     <Button type='submit' variant='contained' color='primary' 
-                    fullWidth style={btnStyle} onClick={editUserForm}
-                    >
+                    fullWidth style={btnStyle}>
                         Submit
                     </Button> 
                 </form>  
