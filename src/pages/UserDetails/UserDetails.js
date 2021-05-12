@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 const UserDetails = (props) => {
     const {users, setUsers} = useContext(usersContext);
     const [redirect, setRedirect] = useState(false)
-    console.log('detaisl', users)
+    const useremail = localStorage.getItem('userEmail');
 
     const paperStyle = { padding: 40, width: 600, margin: '20px auto' };
     const avatarStyle = { backgroundColor: 'blue', width: 60, height: 60};
@@ -52,6 +52,7 @@ const UserDetails = (props) => {
     return ( 
     <div>
       <div className="back-cnt">
+      {useremail == null && <Redirect to='/login'></Redirect>}
         <Link to='/users'><ArrowBackRoundedIcon/></Link>
       </div> 
       <Paper style={paperStyle}> 

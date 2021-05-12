@@ -10,15 +10,16 @@ import UserDetails from './pages/UserDetails/UserDetails';
 import UsersList from './pages/UsersList/UsersList';
 import CreateUser from './pages/CreateUser/CreateUser';
 import { Paper } from '@material-ui/core';
+import fetchData from './fetchData/fetchData'
 
 
 export const usersContext = React.createContext({});
 
 const { Provider: UsersProvider } = usersContext;
 
+
+
 function App() {
-  const [ users, setUsers ] = useState(null);
-  const [fetchData, setFetchData] = useState(false);
   const [ darkMode, setDarkMode] = useState(false);
 
   const theme = createMuiTheme({
@@ -27,18 +28,8 @@ function App() {
     },
   });
 
-  useEffect(() => {
-    console.log(users);
-    const url = "https://609b8ed42b549f00176e3c6a.mockapi.io/users";
-    
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        setUsers(data);
-        // setFetchData(true)
-      
-      })
-  }, [users === null]);
+  const {users, setUsers} = fetchData("https://609b8ed42b549f00176e3c6a.mockapi.io/users")
+
 
 
   return (
@@ -48,8 +39,8 @@ function App() {
           <UsersProvider value={{users, setUsers}}>
             <Header setTheme={darkMode, setDarkMode}/>
             <Switch>
-                  <Route exact path="/" component={Login} />
-                  <Route exact path="/users" component={UsersList} />
+                  <Route exact path="/users"  component={UsersList} />  
+                  <Route exact path="/login" component={Login} />
                   <Route exact path="/users/create" component={CreateUser} />
                   <Route exact path="/users/:id" component={UserDetails} />
                   <Route path="/users/:id/edit" component={EditUser} />

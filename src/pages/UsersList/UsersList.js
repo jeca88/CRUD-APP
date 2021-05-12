@@ -28,7 +28,7 @@ const UsersList = () => {
     }
     return ( 
         <div className='usersList'>
-            {useremail == '' && <Redirect to='/login'></Redirect>}
+            {useremail == null && <Redirect to='/login'></Redirect>}
             <div className="btn-container">
             <Link className='btn-create' to="/users/create"><Button variant='contained' color='primary'>Create</Button></Link>
             </div>

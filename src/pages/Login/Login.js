@@ -6,7 +6,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 const Login = () => {
 
-    const [ email, setEmail] = useState('');
+    const [ email, setEmail] = useState(localStorage.getItem("userEmail"));
     const [ redirect, setRedirect] = useState(false);
     const [ errMessage, setErrorMessage] = useState('');
     const [ errorText, setErrorText] = useState('')

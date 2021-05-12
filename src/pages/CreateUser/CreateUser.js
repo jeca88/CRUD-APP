@@ -55,6 +55,8 @@ const CreateUser = () => {
                 <TextField label='Name' placeholder='Enter name' 
                 fullWidth required value={name} 
                 onChange={(e) => setName(e.target.value)}
+                error={name.length<4}
+                helperText={name.length < 5 ? "Name must be longer than four characters!" : " "}
                 /> 
                  <TextField label='Username' placeholder='Enter username' 
                 fullWidth required value={email} 
