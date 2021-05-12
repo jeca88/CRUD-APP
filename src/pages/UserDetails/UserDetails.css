@@ -1,0 +1,24 @@
+.personal-info {
+    box-shadow: 0 0 5px 0.4px #98abad;
+    padding: 20px 0;
+    margin: 30px;
+}
+
+.company-info {
+    box-shadow: 0 0 5px 0.4px #98abad;
+    padding: 20px 0;
+    margin: 30px;
+}
+
+.edit {
+    text-decoration: none;
+}
+
+.back-cnt {
+    text-align: left;
+    padding: 10px;
+}
+
+.back {
+    width: 50px;
+}
