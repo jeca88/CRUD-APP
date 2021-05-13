@@ -10,7 +10,7 @@ import UserDetails from './pages/UserDetails/UserDetails';
 import UsersList from './pages/UsersList/UsersList';
 import CreateUser from './pages/CreateUser/CreateUser';
 import { Paper } from '@material-ui/core';
-import {GetUsers} from './userStore/userStore'
+import {getUsers} from './userStore/userStore'
 
 
 export const usersContext = React.createContext({});
@@ -20,6 +20,7 @@ const { Provider: UsersProvider } = usersContext;
 
 
 function App() {
+  const [ users, setUsers ] = useState(null);
   const [ darkMode, setDarkMode] = useState(false);
 
   const theme = createMuiTheme({
@@ -28,9 +29,13 @@ function App() {
     },
   });
 
-  const {users, setUsers} = GetUsers()
-
-
+  const afterComplete = (users) => {
+    setUsers(users);
+  }
+  
+  useEffect(()=> {
+    getUsers(afterComplete);
+  }, [users === null])
 
 
   return (

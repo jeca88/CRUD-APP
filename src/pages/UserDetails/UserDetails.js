@@ -9,6 +9,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
+import { deleteUser} from '../../userStore/userStore'
 
 
 const UserDetails = (props) => {
@@ -28,28 +29,22 @@ const UserDetails = (props) => {
 
     const user =  findUser(users);
     
+    const afterComplete = () => {
+        setRedirect(true)
+        setUsers(null) 
+    }
 
-    const deleteUser = () => {
-        fetch(`https://609b8ed42b549f00176e3c6a.mockapi.io/users/${user.id}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-        .then(res => res.json())
-        .then(()=>{
-          setRedirect(true)
-          setUsers(null)  
-        })
-        .catch((error) => alert('Oops! Something went wrong... Please try again.'))
+
+    const removeUser = () => {
+        deleteUser(user.id, afterComplete)
     }
     
 
-     if(!user) {
-         return null;
-     }
+    if(!user) {
+        return null;
+    }
 
-     if(useremail == '') {
+    if(useremail == '') {
         return <Redirect to='/login'></Redirect>
     } else {
         return ( 
@@ -64,7 +59,7 @@ const UserDetails = (props) => {
                     <EditRoundedIcon/>Edit</Button>
                 </Link>
                 <Button variant="outlined" color='secondary' startIcon={<DeleteIcon />} 
-                onClick={deleteUser}>Delete</Button>
+                onClick={removeUser}>Delete</Button>
             </Grid>
             <Grid align='center'>  
                 <h1 className='user-name'>{user.name}</h1>
