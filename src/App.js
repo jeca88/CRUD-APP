@@ -11,7 +11,6 @@ import CreateUser from './pages/CreateUser/CreateUser';
 import { Paper } from '@material-ui/core';
 import {getUsers} from './userStore/userStore'
 
-
 export const usersContext = React.createContext({});
 const { Provider: UsersProvider } = usersContext;
 

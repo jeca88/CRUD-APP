@@ -8,6 +8,12 @@ export const getUsers = (afterComplete) => {
     .then(data => afterComplete(data))
 }
 
+export const getUser = (id, afterComplete) => {
+    fetch(usersUrl + '/' + id)
+    .then(response => response.json())
+    .then(data => afterComplete(data))
+}
+
 
 export const deleteUser = (id, afterComplete) => {
     fetch(usersUrl + '/' + id, {
@@ -20,7 +26,7 @@ export const deleteUser = (id, afterComplete) => {
     .then(()=>{
         afterComplete();
     })
-    .catch((error) => alert('Oops! Something went wrong... :( Please try again.'))
+    .catch((error) => alert('Oops! Something went wrong...'))
 }
 
 export const editUser = (id,name, email, afterComplete) => {

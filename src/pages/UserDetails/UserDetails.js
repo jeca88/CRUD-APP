@@ -1,4 +1,4 @@
-import React, { useContext, useState} from 'react';
+import React, { useContext, useEffect, useState} from 'react';
 import './UserDetails.css';
 import { usersContext } from "../../App";
 import { Grid, Paper, Avatar, Button} from '@material-ui/core';
@@ -9,33 +9,35 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
-import { deleteUser } from '../../userStore/userStore'
+import { deleteUser, getUser } from '../../userStore/userStore'
 
 
 const UserDetails = (props) => {
-    const {users, setUsers} = useContext(usersContext);
+    const { setUsers } = useContext(usersContext);
+    const [ user, setUser] = useState(null);
     const [redirect, setRedirect] = useState(false)
     const useremail = localStorage.getItem('userEmail');
 
     const paperStyle = { padding: 40, margin: '10px auto', width: '50%' };
     const avatarStyle = { backgroundColor: 'blue', width: 60, height: 60};
 
+    const afterUserFetchComplete = (user) => {
+        setUser(user);
+    }
     
-    const findUser = (users) => {
-        if(users) {
-            return users.find(e => e.id === props.match.params.id);
-        }   
+    const afterCompleteDelete = () => {
+        setUsers(null);
+        setRedirect(true); 
     }
 
-    const user =  findUser(users);
+    useEffect(()=> {
+        getUser(props.match.params.id, afterUserFetchComplete);
+    },[])
+        
     
-    const afterComplete = () => {
-        setRedirect(true)
-        setUsers(null) 
-    }
 
     const removeUser = () => {
-        deleteUser(user.id, afterComplete)
+        deleteUser(user.id, afterCompleteDelete)
     }
     
     if(!user) {
