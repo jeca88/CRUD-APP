@@ -11,6 +11,7 @@ import CreateUser from './pages/CreateUser/CreateUser';
 import { Paper } from '@material-ui/core';
 import {getUsers} from './userStore/userStore'
 
+
 export const usersContext = React.createContext({});
 const { Provider: UsersProvider } = usersContext;
 
@@ -31,7 +32,7 @@ function App() {
   
   useEffect(()=> {
     getUsers(afterComplete);
-  }, [users === null])
+  }, [users == null])
 
 
   return (
@@ -46,7 +47,7 @@ function App() {
                   <Route exact path="/login" component={Login} />
                   <Route exact path="/users/create" component={CreateUser} />
                   <Route exact path="/users/:id" component={UserDetails} />
-                  <Route path="/users/:id/edit" component={EditUser} />  
+                  <Route path="/users/:id/edit" component={EditUser} /> 
               </Switch>
             </UsersProvider>
         </div>
