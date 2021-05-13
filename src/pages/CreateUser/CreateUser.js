@@ -40,8 +40,7 @@ const CreateUser = () => {
         event.preventDefault(); 
         try {
           await submitCreateForm();
-          alert('You successfully created new user!');
-         
+          
         } catch (e) {
           alert('Something went wrong! Try again.' );
         }

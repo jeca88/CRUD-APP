@@ -13,7 +13,7 @@ const Header = ({ setTheme }) => {
     let location = useLocation();
     
     const logOut = () => {
-        localStorage.removeItem('userEmail');
+        localStorage.setItem('userEmail', '');
         setRedirect(true);
     }
     

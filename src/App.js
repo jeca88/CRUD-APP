@@ -10,7 +10,7 @@ import UserDetails from './pages/UserDetails/UserDetails';
 import UsersList from './pages/UsersList/UsersList';
 import CreateUser from './pages/CreateUser/CreateUser';
 import { Paper } from '@material-ui/core';
-import fetchData from './fetchData/fetchData'
+import {GetUsers} from './userStore/userStore'
 
 
 export const usersContext = React.createContext({});
@@ -28,7 +28,8 @@ function App() {
     },
   });
 
-  const {users, setUsers} = fetchData("https://609b8ed42b549f00176e3c6a.mockapi.io/users")
+  const {users, setUsers} = GetUsers()
+
 
 
 

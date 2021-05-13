@@ -43,8 +43,6 @@ const EditUser = (props) => {
         event.preventDefault(); 
         try {
           await editUserForm();
-          alert('You successfully edited user!');
-         
         } catch (e) {
           alert('Something went wrong! Try again.' );
         }

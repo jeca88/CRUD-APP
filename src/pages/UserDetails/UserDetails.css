@@ -1,17 +1,23 @@
+.user-info {
+    display: flex;
+}
+
+
 .personal-info {
-    box-shadow: 0 0 5px 0.4px #98abad;
+    
     padding: 20px 0;
     margin: 30px;
 }
 
 .company-info {
-    box-shadow: 0 0 5px 0.4px #98abad;
+  
     padding: 20px 0;
     margin: 30px;
 }
 
 .edit {
     text-decoration: none;
+    margin-right: 5px;
 }
 
 .back-cnt {
@@ -21,4 +27,9 @@
 
 .back {
     width: 50px;
+}
+
+.user-name {
+    margin-top: 70px;
+    font-style: oblique;
 }

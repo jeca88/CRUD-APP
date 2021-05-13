@@ -27,21 +27,27 @@ const UsersList = () => {
         return null
     }
 
+    if(useremail == '') {
+        return <Redirect to='/login'></Redirect>
+    } else {
+      
+    
+
     return ( 
         <div className='usersList'>
-            {useremail == null && <Redirect to='/login'></Redirect>}
             <div className="btn-container">
             <Link className='btn-create' to="/users/create"><Button variant='contained' color='primary'>Create</Button></Link>
             </div>
             <MaterialTable data={users} columns={columns} title='User Data'
-            onRowClick={(rowData) => {
+            onRowClick={(event, rowData) => {
                 setId(rowData.id)
-                setRedirect(true)
+                setRedirect(true) 
               }}
             />
             {redirect && <Redirect push to={`users/${id}`}/>}
         </div>
      );
+    }
 }
  
 export default UsersList;
