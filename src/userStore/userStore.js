@@ -1,16 +1,12 @@
-import { useState, useEffect } from 'react';
-
-
 const host = 'https://609b8ed42b549f00176e3c6a.mockapi.io/';
 const usersUrl = host + "users";
 
 
 export const getUsers = (afterComplete) => {
     fetch(usersUrl)
-      .then(response => response.json())
-      .then(data => afterComplete(data))
+    .then(response => response.json())
+    .then(data => afterComplete(data))
 }
-
 
 
 export const deleteUser = (id, afterComplete) => {
@@ -27,3 +23,37 @@ export const deleteUser = (id, afterComplete) => {
     .catch((error) => alert('Oops! Something went wrong... :( Please try again.'))
 }
 
+export const editUser = (id,name, email, afterComplete) => {
+    fetch(usersUrl + '/' + id, {
+        method: 'PUT',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+      })
+    })
+    .then((res) => res.json())
+    .then(() => {
+        afterComplete();    
+    })     
+}
+
+
+export const createUser = ( name, email, afterComplete) => {
+    fetch(usersUrl, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+      },
+        body: JSON.stringify({
+            name: name,
+            email: email,
+        })
+    })
+    .then((res) => res.json())
+    .then(() => {
+      afterComplete();
+    })   
+}

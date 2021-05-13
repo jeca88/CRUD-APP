@@ -1,10 +1,13 @@
-.user-info {
-    display: flex;
+.container {
+    height: 100vh;
 }
 
+.user-info {
+    display: flex;
+    justify-content: center;
+}
 
 .personal-info {
-    
     padding: 20px 0;
     margin: 30px;
 }
@@ -33,3 +36,19 @@
     margin-top: 70px;
     font-style: oblique;
 }
+
+@media only screen and (max-width: 720px) {
+    .user-info {
+      display: block;
+      text-align: center;
+    }
+    .personal-info {
+        margin: 0;
+    }
+    .user-name {
+        font-size: 19px;
+    }
+    .btn-delete {
+        margin-top: 10px !important;
+    }
+  }

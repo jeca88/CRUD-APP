@@ -4,6 +4,7 @@ import { usersContext } from "../../App";
 import { Grid, Paper, Avatar, TextField, Button} from '@material-ui/core';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
+import { editUser } from '../../userStore/userStore';
 
 
 
@@ -16,26 +17,15 @@ const EditUser = (props) => {
 
     const paperStyle = { padding: 40, height: 500, width: 300, margin: '20px auto' };
     const avatarStyle = { backgroundColor: 'blue'};
-    const btnStyle = {margin: '40px 0'};
-
     
+     
+    const afterComplete = () => {
+        setUsers(null);
+        setRedirect(true) 
+    }
 
     const editUserForm = () => {
-        const url = "https://609b8ed42b549f00176e3c6a.mockapi.io/users/";
-        fetch(url + props.match.params.id, {
-            method: 'PUT',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                name: name,
-                email: email,
-            })
-        }).then((res) => res.json())
-        .then(() => {
-            setUsers(null);
-            setRedirect(!redirect)    
-        })       
+       editUser(props.match.params.id, name, email, afterComplete)      
     }
 
 
@@ -46,15 +36,15 @@ const EditUser = (props) => {
         } catch (e) {
           alert('Something went wrong! Try again.' );
         }
-      }
+    }
 
 
     return ( 
-        <div>
+        <div className="container">
             <div className="back-cnt">
                 <Link to='/users'><ArrowBackRoundedIcon/></Link>
             </div>
-            <Grid>
+            <Grid container item xs={12}>
             <Paper style={paperStyle}>
                 <Grid align="center">
                     <Avatar style={avatarStyle}><EditRoundedIcon/></Avatar>
@@ -73,8 +63,8 @@ const EditUser = (props) => {
                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                     onChange={(e) => setEmail(e.target.value)}
                     />  
-                    <Button type='submit' variant='contained' color='primary' 
-                    fullWidth style={btnStyle}>
+                    <Button className='submit-btn' type='submit' variant='contained' color='primary' 
+                    fullWidth >
                         Submit
                     </Button> 
                 </form>  
@@ -82,7 +72,7 @@ const EditUser = (props) => {
             {redirect && <Redirect to="/users"/>}
         </Grid>
         </div>
-     );
+        );
 }
  
 export default EditUser;

@@ -1,9 +1,11 @@
 import React, { useState, useContext } from 'react';
+import './CreateUser.css';
 import { Redirect, Link } from "react-router-dom";
 import { usersContext } from "../../App";
 import { Grid, Paper, Avatar, TextField, Button} from '@material-ui/core';
 import CreateRoundedIcon from '@material-ui/icons/CreateRounded';
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
+import { createUser } from '../../userStore/userStore';
 
 
 
@@ -13,26 +15,17 @@ const CreateUser = () => {
     const [email, setEmail] = useState("")
     const [redirect, setRedirect] = useState(false)
 
-    const paperStyle = { padding: 40, height: 400, width: 300, margin: '20px auto' };
+    const paperStyle = { padding: 40, width: 300, margin: '20px auto' };
     const avatarStyle = { backgroundColor: 'blue'};
-    const btnStyle = {margin: '40px 0'};
+    
+
+    const afterComplete = () => {
+        setUsers(null);
+        setRedirect(true) 
+    }
 
     const submitCreateForm = () => {
-        const url = "https://609b8ed42b549f00176e3c6a.mockapi.io/users";
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                name: name,
-                email: email,
-            })
-        }).then((res) => res.json())
-        .then(() => {
-            setRedirect(true); 
-            setUsers(null);  
-        })   
+        createUser(name, email, afterComplete)  
     }
 
 
@@ -49,11 +42,11 @@ const CreateUser = () => {
 
 
     return ( 
-        <div>
+        <div className='container'>
             <div className="back-cnt">
                 <Link to='/users'><ArrowBackRoundedIcon/></Link>
             </div>
-            <Grid>
+            <Grid container item xs={12}>
             <Paper style={paperStyle}>
                 <Grid align="center">
                     <Avatar style={avatarStyle}><CreateRoundedIcon/></Avatar>
@@ -72,7 +65,7 @@ const CreateUser = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     />  
                     <Button type='submit' variant='contained' color='primary' 
-                    fullWidth style={btnStyle}>
+                    fullWidth className="submit-btn">
                         Submit
                     </Button> 
                 </form>  
@@ -80,7 +73,7 @@ const CreateUser = () => {
             {redirect && <Redirect to="/users"/>}
             </Grid>
         </div>    
-    );
+        );
 }
  
 export default CreateUser;

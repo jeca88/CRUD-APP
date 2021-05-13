@@ -7,7 +7,6 @@ import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import ColorLensRoundedIcon from '@material-ui/icons/ColorLensRounded';
 
 
-
 const Header = ({ setTheme }) => {
     const [redirect, setRedirect] = useState(false);
     let location = useLocation();
@@ -20,10 +19,10 @@ const Header = ({ setTheme }) => {
 
     return ( 
         <AppBar position="static">
-             {redirect && <Redirect to='/login'></Redirect>}
+            {redirect && <Redirect to='/login'></Redirect>}
             <Toolbar className='header'>
             <SupervisedUserCircleRoundedIcon style={{ fontSize: 50 }} />
-            <Button variant="outlined"  onClick={()=> setTheme(prevState=>!prevState)}>
+            <Button className="theme-btn" variant="outlined"  onClick={()=> setTheme(prevState=>!prevState)}>
             <ColorLensRoundedIcon/>   
                 Change Theme
             </Button>

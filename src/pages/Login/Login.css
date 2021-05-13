@@ -1,4 +1,17 @@
+.container {
+    height: 100vh;
+}
+
 .errMessage {
     color: red;
     font-size: 20px;
 }
+
+form {
+    padding-top: 35px;
+}
+
+.submit-btn {
+    margin: 40px 0 !important;
+}
+
