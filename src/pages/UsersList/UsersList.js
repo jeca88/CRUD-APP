@@ -4,6 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import { usersContext } from "../../App";
 import MaterialTable from 'material-table';
 import { Button } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 
@@ -24,7 +25,7 @@ const UsersList = () => {
     ]
 
     if(!users) {
-        return null
+        return <CircularProgress disableShrink />;
     }
 
     if(useremail === '') {

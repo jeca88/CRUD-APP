@@ -38,7 +38,7 @@ const Login = () => {
                     <h2>Log In</h2>
                 </Grid>
                 <form onSubmit={submitHandler}>
-                    <TextField label='Username' placeholder='Enter your username' 
+                    <TextField label='Email' placeholder='Enter your email' 
                     fullWidth required value={email} type='email'
                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
                     onChange={(e) => setEmail(e.target.value)}/>  

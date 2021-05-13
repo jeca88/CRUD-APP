@@ -6,12 +6,14 @@ export const getUsers = (afterComplete) => {
     fetch(usersUrl)
     .then(response => response.json())
     .then(data => afterComplete(data))
+    .catch((error) => alert('Oops! Something went wrong...Failed to fetch.'))
 }
 
 export const getUser = (id, afterComplete) => {
     fetch(usersUrl + '/' + id)
     .then(response => response.json())
     .then(data => afterComplete(data))
+    .catch((error) => alert('Oops! Something went wrong...Failed to fetch.'))
 }
 
 
@@ -26,7 +28,7 @@ export const deleteUser = (id, afterComplete) => {
     .then(()=>{
         afterComplete();
     })
-    .catch((error) => alert('Oops! Something went wrong...'))
+    .catch((error) => alert('Oops! Something went wrong...Failed to fetch.'))
 }
 
 export const editUser = (id,name, email, afterComplete) => {
@@ -43,7 +45,8 @@ export const editUser = (id,name, email, afterComplete) => {
     .then((res) => res.json())
     .then(() => {
         afterComplete();    
-    })     
+    })
+    .catch((error) => alert('Oops! Something went wrong...Failed to fetch.'))     
 }
 
 
@@ -61,5 +64,6 @@ export const createUser = ( name, email, afterComplete) => {
     .then((res) => res.json())
     .then(() => {
       afterComplete();
-    })   
+    })
+    .catch((error) => alert('Oops! Something went wrong...Failed to fetch.'))   
 }

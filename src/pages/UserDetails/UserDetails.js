@@ -9,7 +9,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
-import { deleteUser, getUser } from '../../userStore/userStore'
+import { deleteUser, getUser } from '../../userStore/userStore';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 const UserDetails = (props) => {
@@ -17,6 +18,7 @@ const UserDetails = (props) => {
     const [ user, setUser] = useState(null);
     const [redirect, setRedirect] = useState(false)
     const useremail = localStorage.getItem('userEmail');
+    let userId = props.match.params.id;
 
     const paperStyle = { padding: 40, margin: '10px auto', width: '50%' };
     const avatarStyle = { backgroundColor: 'blue', width: 60, height: 60};
@@ -31,17 +33,17 @@ const UserDetails = (props) => {
     }
 
     useEffect(()=> {
-        getUser(props.match.params.id, afterUserFetchComplete);
-    },[])
+        getUser(userId, afterUserFetchComplete);
+    },[userId])
         
     
 
     const removeUser = () => {
-        deleteUser(user.id, afterCompleteDelete)
+        deleteUser(userId, afterCompleteDelete)
     }
     
     if(!user) {
-        return null;
+        return <CircularProgress disableShrink />;
     }
 
     if(useremail === '') {
@@ -55,11 +57,12 @@ const UserDetails = (props) => {
                 </div> 
             <Paper style={paperStyle}> 
                 <Grid align="right">
-                    <Link className="edit" to={`/users/${user.id}/edit`}>
+                    <Link className="edit" to={`/users/${userId}/edit`}>
                         <Button variant="outlined" color='primary'>
                         <EditRoundedIcon/>Edit</Button>
                     </Link>
-                    <Button className="btn-delete" variant="outlined" color='secondary' startIcon={<DeleteIcon />} 
+                    <Button className="btn-delete" variant="outlined" 
+                    color='secondary' startIcon={<DeleteIcon />} 
                     onClick={removeUser}>Delete</Button>
                 </Grid>
                 <Grid align='center'>  

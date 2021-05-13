@@ -1,41 +1,24 @@
-## Project name
-
-USERS APP
-Responsive web app which tracks Users and used for creating and deleting Users, built with React, JavaScript, Material UI and CSS.
+## Users Manager 
 
 A website whose main purpose is to provide information about the users. When a user gets selected from the table row, 
 a new screen is shown to show the details for the selected user. From that screen user can be updated or deleted.
+It also provides functionality to create a new user.
+
+## Prerequisite
+
+- installed node and npm on your machine
+- installed git on your machine
+
 
 ## Installation
 
-Clone down this repository. You will need node and npm installed globally on your machine.
+Follow the below instructions to start application:
+- git clone https://github.com/jeca88/Users-Manager.git
+- navigate to the home folder of the cloned application
+- npm install
+- npm start
+- after application start successfully you can accesses application at localhost:3000
 
-$ git clone https://github.com/jeca88/CRUD-APP.git
-$ cd ../path/to/the/file
-$ npm install
-$ npm start
-
-## Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-In the project directory, you can run:
-
-Installation:
-
-npm install
-
-To Run Test Suite:
-
-npm test
-
-To Start Server:
-
-npm start
-
-To Visit App:
-
-localhost:3000/ideas
 
 ## Technologies
 
@@ -44,3 +27,18 @@ localhost:3000/ideas
 -Material UI
 -React-Router
 -CSS
+
+## Accesses to Mock API
+
+Backend APIs are hosted on https://mockapi.io/projects. Make sure you can accesses the following end points:
+- for getting users: https://609b8ed42b549f00176e3c6a.mockapi.io/users (GET method)
+- for creating user: https://609b8ed42b549f00176e3c6a.mockapi.io/users (POST method)
+- for editing user: https://609b8ed42b549f00176e3c6a.mockapi.io/users/{user_id} (PUT method)
+- for deleting user: https://609b8ed42b549f00176e3c6a.mockapi.io/users/{user_id} (DELETE method)
+
+-ReactJS
+-Java Script
+-Material UI
+-React-Router
+-CSS
+

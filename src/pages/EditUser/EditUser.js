@@ -58,7 +58,7 @@ const EditUser = (props) => {
                       }}
                     onChange={(e) => setName(e.target.value)}
                     /> 
-                    <TextField label='Username' placeholder='Enter username' 
+                    <TextField label='Email' placeholder='Enter email' 
                     fullWidth required value={email} type='email'
                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                     onChange={(e) => setEmail(e.target.value)}
