@@ -5,9 +5,8 @@ import { Grid, Paper, Avatar, TextField, Button} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 
-
 const Login = () => {
-    const [ email, setEmail] = useState(localStorage.getItem("userEmail"));
+    const [ email, setEmail] = useState(localStorage.getItem("userEmail") || '');
     const [ redirect, setRedirect] = useState(false);
     const [ errMessage, setErrorMessage] = useState('');
 
