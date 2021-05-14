@@ -28,7 +28,7 @@ const UsersList = () => {
         return <CircularProgress disableShrink />;
     }
 
-    if(useremail === '') {
+    if(useremail === '' || useremail === null) {
         return <Redirect to='/login'></Redirect>
     } else {
       

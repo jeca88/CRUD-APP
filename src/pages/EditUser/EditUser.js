@@ -12,7 +12,8 @@ const EditUser = (props) => {
     const {setUsers} = useContext(usersContext);
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
-    const [redirect, setRedirect] = useState(false)
+    const [redirect, setRedirect] = useState(false);
+    const useremail = localStorage.getItem('userEmail');
 
 
     const paperStyle = { padding: 40, height: 500, width: 300, margin: '20px auto' };
@@ -39,6 +40,9 @@ const EditUser = (props) => {
     }
 
 
+    if(useremail === '' || useremail === null) {
+        return <Redirect to='/login'></Redirect>
+    } else {
     return ( 
         <div className="container">
             <div className="back-cnt">
@@ -73,6 +77,7 @@ const EditUser = (props) => {
         </Grid>
         </div>
         );
+    }               
 }
  
 export default EditUser;

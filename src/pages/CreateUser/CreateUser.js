@@ -13,7 +13,8 @@ const CreateUser = () => {
     const {setUsers} = useContext(usersContext);
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
-    const [redirect, setRedirect] = useState(false)
+    const [redirect, setRedirect] = useState(false);
+    const useremail = localStorage.getItem('userEmail');
 
     const paperStyle = { padding: 40, width: 300, margin: '20px auto' };
     const avatarStyle = { backgroundColor: 'blue'};
@@ -40,7 +41,9 @@ const CreateUser = () => {
       }
 
 
-
+    if(useremail === '' || useremail === null) {
+        return <Redirect to='/login'></Redirect>
+    } else {
     return ( 
         <div className='container'>
             <div className="back-cnt">
@@ -74,6 +77,7 @@ const CreateUser = () => {
             </Grid>
         </div>    
         );
+    }
 }
  
 export default CreateUser;
