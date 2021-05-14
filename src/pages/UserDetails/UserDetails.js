@@ -7,6 +7,7 @@ import BusinessRoundedIcon from '@material-ui/icons/BusinessRounded';
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
+import Divider from '@material-ui/core/Divider';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import { deleteUser, getUser } from '../../userStore/userStore';
@@ -20,8 +21,8 @@ const UserDetails = (props) => {
     const useremail = localStorage.getItem('userEmail');
     let userId = props.match.params.id;
 
-    const paperStyle = { padding: 40, margin: '10px auto', width: '50%' };
-    const avatarStyle = { backgroundColor: 'blue', width: 60, height: 60};
+    const paperStyle = { padding: 40, margin: '10px auto', width: '50%', borderRadius: 15 };
+    const avatarStyle = { backgroundColor: 'blue', width: 60, height: 60, marginBottom: 20 };
 
     const afterUserFetchComplete = (user) => {
         setUser(user);
@@ -68,6 +69,7 @@ const UserDetails = (props) => {
                 <Grid align='center'>  
                     <h1 className='user-name'>{user.name}</h1>
                     <Avatar style={avatarStyle}>{user.name.charAt(0)}</Avatar> 
+                    <Divider variant="middle" />
                     <div className='user-info'>
                         <div className='personal-info'>
                             <ContactsRoundedIcon/>
