@@ -31,15 +31,18 @@ export const deleteUser = (id, afterComplete) => {
     .catch((error) => alert('Oops! Something went wrong...Failed to fetch.'))
 }
 
-export const editUser = (id,name, email, afterComplete) => {
+export const editUser = (id, user, afterComplete) => {
     fetch(usersUrl + '/' + id, {
         method: 'PUT',
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: name,
-          email: email,
+          name: user.name,
+          email: user.email,
+          username: user.username,
+          phone: user.phone,
+          website: user.website
       })
     })
     .then((res) => res.json())
